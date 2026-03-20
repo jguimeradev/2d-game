@@ -1,6 +1,6 @@
 export class Renderer {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
+    public canvas: HTMLCanvasElement;
+    public ctx: CanvasRenderingContext2D;
     private boundResize = this.resize.bind(this);
 
     constructor(canvasId: string) {
@@ -50,4 +50,16 @@ export class Renderer {
         this.ctx.fillText(text, x, y);
         this.ctx.restore();
     }
+
+    drawCircle(x: number, y: number, radius: number, fillColor: string, strokeColor: string = "#2176ae", lineWidth: number = 2): void {
+    this.ctx.save();
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+    this.ctx.fillStyle = fillColor;
+    this.ctx.strokeStyle = strokeColor;
+    this.ctx.lineWidth = lineWidth;
+    this.ctx.fill();
+    this.ctx.stroke();
+    this.ctx.restore();
+}
 }
