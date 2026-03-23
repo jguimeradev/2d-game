@@ -1,19 +1,20 @@
+import { Renderer } from "../core/Renderer";
+import { Vector2D } from "../motion/Vector2D";
 import { Entity } from "./Entity";
-import { Renderer } from "../engine/Renderer";
-
 export class Player extends Entity {
-    public speed: number = 50;
 
     constructor(x: number, y: number, width: number, height: number) {
         super(x, y, width, height);
     }
 
-    update(deltaTime: number): void {
-        this.position.x += this.velocity.x * deltaTime * this.speed;
-        this.position.y += this.velocity.y * deltaTime * this.speed;
-    }
 
     draw(renderer: Renderer): void {
-        renderer.drawCircle(this.position.x, this.position.y, this.width / 2, "#3498bd");
+        renderer.drawCircle(this.position.x, this.position.y, this.width / 2, "#2176ae")
     }
+
+    update(deltaTime: number, renderer: Renderer): void {
+        this.position.x += this.velocity.x * deltaTime
+        this.position.y += this.velocity.y * deltaTime
+    }
+
 }

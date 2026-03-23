@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["src/main.ts", "src/engine/", "src/entities/", "src/utils/"],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "name": "2D Game Engine API Documentation",
+  "includeVersion": true,
+  "theme": "default",
+  "excludePrivate": false,
+  "excludeInternal": false,
+  "readme": "README.md"
+}
