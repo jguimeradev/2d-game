@@ -3,6 +3,8 @@ import { Vector2D } from "../motion/Vector2D";
 import { Entity } from "./Entity";
 export class Player extends Entity {
 
+    public speed: number = 1000
+
     constructor(x: number, y: number, width: number, height: number) {
         super(x, y, width, height);
     }

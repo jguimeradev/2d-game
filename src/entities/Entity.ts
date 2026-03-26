@@ -14,6 +14,7 @@ export abstract class Entity {
         this.velocity = new Vector2D(0, 0)
         this.width = width
         this.height = height
+        this.isActive = true
     }
 
     abstract draw(renderer: Renderer): void
@@ -21,3 +22,4 @@ export abstract class Entity {
     abstract update(deltaTime: number, renderer: Renderer): void
 
 }
+
