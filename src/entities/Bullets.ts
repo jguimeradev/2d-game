@@ -1,16 +1,21 @@
-import { Renderer } from "../core/Renderer";
 import { Vector2D } from "../motion/Vector2D";
-import { Entity } from "./Entity";
-export class Player extends Entity {
+import { Renderer } from "../core/Renderer";
+import { Weapon } from "./Weapon";
 
+
+export class Bullets extends Weapon {
+
+    public isActive: boolean
     public speed: number = 1500
 
     constructor(x: number, y: number, width: number, height: number) {
+
         super(x, y, width, height);
+        this.isActive = true
     }
 
     draw(renderer: Renderer): void {
-        renderer.drawCircle(this.position.x, this.position.y, this.width / 2, "#2176ae")
+        renderer.drawCircle(this.position.x, this.position.y, this.width / 8, "#bd34a6");
     }
 
     update(deltaTime: number, renderer: Renderer): void {

@@ -21,5 +21,7 @@ export abstract class Entity {
 
     abstract update(deltaTime: number, renderer: Renderer): void
 
+    abstract clamp(renderer: Renderer): void
+
 }
 

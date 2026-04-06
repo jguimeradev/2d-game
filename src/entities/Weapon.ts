@@ -1,16 +1,20 @@
-import { Renderer } from "../core/Renderer";
 import { Vector2D } from "../motion/Vector2D";
+import { Renderer } from "../core/Renderer";
 import { Entity } from "./Entity";
-export class Player extends Entity {
 
+export class Weapon extends Entity {
+    public isActive: boolean
     public speed: number = 1500
 
+
     constructor(x: number, y: number, width: number, height: number) {
+
         super(x, y, width, height);
+        this.isActive = true
     }
 
     draw(renderer: Renderer): void {
-        renderer.drawCircle(this.position.x, this.position.y, this.width / 2, "#2176ae")
+        renderer.drawCircle(this.position.x, this.position.y, this.width / 4, "#00000000");
     }
 
     update(deltaTime: number, renderer: Renderer): void {
@@ -25,5 +29,5 @@ export class Player extends Entity {
         if (this.position.y < 0) this.position.y = 0
         if (this.position.y > renderer.height) this.position.y = renderer.height
     }
-
 }
+
