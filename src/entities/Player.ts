@@ -1,6 +1,9 @@
 import { Renderer } from "../core/Renderer";
 import { Vector2D } from "../motion/Vector2D";
 import { Entity } from "./Entity";
+import { Bullets } from "./Bullets";
+
+
 export class Player extends Entity {
 
     public speed: number = 1500

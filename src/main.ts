@@ -10,8 +10,8 @@ export class Game {
     private currentTime: number = 0
     private player: Player
     private input: Input
-    private weapon: Weapon
     private bullets: Bullets
+    private weapon: Weapon
 
     constructor() {
         this.renderer = new Renderer("canvas")
@@ -49,17 +49,23 @@ export class Game {
     private update(deltaTime: number) {
 
         const axis = this.input.axis()
-        const shot = this.input.shot()
         const move = new Vector2D(axis.x, axis.y).normalise()
-        const shooting = new Vector2D(shot.x, shot.y).normalise()
+        const fire = new Vector2D(1, 0)
+
+        if (this.bullets.position.x >= this.renderer.width) {
+            this.bullets.isActive = false
+        }
 
         this.player.velocity = move.multiply(this.player.speed)
         this.weapon.velocity = move.multiply(this.player.speed)
-        this.bullets.velocity = shooting.multiply(this.bullets.speed)
 
+        if (this.input.shot()) {
+            this.bullets.velocity = fire.multiply(this.bullets.speed)
+        }
+
+        this.bullets.update(deltaTime, this.renderer)
         this.player.update(deltaTime, this.renderer)
         this.weapon.update(deltaTime, this.renderer)
-        this.bullets.update(deltaTime, this.renderer)
     }
 }
 

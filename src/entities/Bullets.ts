@@ -9,13 +9,12 @@ export class Bullets extends Weapon {
     public speed: number = 1500
 
     constructor(x: number, y: number, width: number, height: number) {
-
         super(x, y, width, height);
         this.isActive = true
     }
 
     draw(renderer: Renderer): void {
-        renderer.drawCircle(this.position.x, this.position.y, this.width / 8, "#bd34a6");
+        renderer.drawCircle(this.position.x, this.position.y, this.width / 2, "#bd34a6");
     }
 
     update(deltaTime: number, renderer: Renderer): void {
@@ -30,5 +29,6 @@ export class Bullets extends Weapon {
         if (this.position.y < 0) this.position.y = 0
         if (this.position.y > renderer.height) this.position.y = renderer.height
     }
+
 
 }

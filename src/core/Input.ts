@@ -32,18 +32,9 @@ export class Input {
         return { x, y }
     }
 
-    shot(): { x: number, y: number } {
-
-        let x = 0
-        let y = 0
-
-        if (this.isPressed(" ")) {
-            x = 100
-            y = 0
-        }
-
-
-        return { x, y }
+    shot(): boolean {
+        if (this.isPressed(" ")) return true
+        return false
     }
 
 

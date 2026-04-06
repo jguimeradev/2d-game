@@ -4,18 +4,19 @@ import { Entity } from "./Entity";
 
 export class Weapon extends Entity {
     public isActive: boolean
-    public speed: number = 1500
+    private color: string
 
 
     constructor(x: number, y: number, width: number, height: number) {
-
         super(x, y, width, height);
         this.isActive = true
+        this.color = "#FFF"
     }
 
     draw(renderer: Renderer): void {
-        renderer.drawCircle(this.position.x, this.position.y, this.width / 4, "#00000000");
+        renderer.drawCircle(this.position.x, this.position.y, this.width / 2, this.color);
     }
+
 
     update(deltaTime: number, renderer: Renderer): void {
         this.clamp(renderer)
