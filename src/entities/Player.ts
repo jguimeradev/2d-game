@@ -13,7 +13,7 @@ export class Player implements IEntity {
     public radius: number
     private input: Input
     public bullets: Array<Bullet> = []
-    public bulletSpeed: number = 500
+    public bulletSpeed: number = 1000
 
     constructor(x: number, y: number, radius: number, input: Input) {
         this.position = new Vector2D(x, y)
@@ -36,7 +36,6 @@ export class Player implements IEntity {
 
         const mousePos = this.input.getMousePos()
         const aim = mousePos.substract(this.position).normalise()
-
         if (this.input.mouse.justClicked) {
             this.bullets.push(new Bullet(this.position, aim, this.bulletSpeed))
         }
@@ -49,8 +48,9 @@ export class Player implements IEntity {
     draw(renderer: Renderer): void {
 
         //1. player
-        renderer.drawCircle(this.position.x, this.position.y, this.radius, "#a5ae21")
+        renderer.drawCircle(this.position.x, this.position.y, this.radius, "#cc00ff")
 
+        //2. bullets
         this.bullets.forEach(b => b.draw(renderer))
 
     }

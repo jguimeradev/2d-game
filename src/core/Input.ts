@@ -14,9 +14,11 @@ export class Input {
         window.addEventListener('keydown', (e) => this.keys[e.code] = true)
         window.addEventListener('keyup', (e) => this.keys[e.code] = false)
 
-        canvas.addEventListener('mousedown', () => {
+        canvas.addEventListener('mousedown', (e) => {
             this.mouse.isDown = true
             this.mouse.justClicked = true
+            this.mouse.x = e.clientX
+            this.mouse.y = e.clientY
         })
 
         canvas.addEventListener('mouseup', () => {

@@ -6,13 +6,14 @@ export class Bullet implements IEntity {
 
     public position: Vector2D
     public velocity: Vector2D
-    public speed: number = 1000
-    public radius: number = 5
+    public speed: number = 1
+    public radius: number = 50
     public isActive: boolean = true
 
     constructor(position: Vector2D, velocity: Vector2D, speed: number) {
+        this.speed = speed
         this.position = new Vector2D(position.x, position.y)
-        this.velocity = velocity.normalise().multiply(speed)
+        this.velocity = velocity.normalise().multiply(this.speed)
     }
 
 
@@ -23,7 +24,7 @@ export class Bullet implements IEntity {
 
 
     draw(renderer: Renderer): void {
-        renderer.drawCircle(this.position.x, this.position.y, this.radius, "#ae2140")
+        renderer.drawCircle(this.position.x, this.position.y, this.radius, "#FFF")
     }
 
     clamp(renderer: Renderer): boolean {

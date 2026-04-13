@@ -29,7 +29,9 @@ export class Game {
 
 
         this.update(deltaTime)
+
         this.draw()
+
 
         requestAnimationFrame(this.loop.bind(this))
     }
@@ -42,6 +44,7 @@ export class Game {
 
     private update(deltaTime: number) {
         this.player.update(deltaTime, this.renderer)
+        this.input.resetPerFrameState()
     }
 }
 window.addEventListener("load", () => new Game())
