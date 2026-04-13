@@ -1,41 +1,45 @@
+import { Vector2D } from "../motion/Vector2D"
 export class Input {
-    private keys: Set<string> = new Set()
 
-    /** 
-     *  Initializes input listeners on the window *
-     */
+    public keys: { [key: string]: boolean } = {}
 
-    constructor() {
-        window.addEventListener("keydown", (e) => this.keys.add(e.key))
-        window.addEventListener("keyup", (e) => this.keys.delete(e.key))
+    public mouse = {
+        x: 0,
+        y: 0,
+        isDown: false,
+        justClicked: false
     }
 
-    /** 
-    * check if a specific key is pressed. 
-    *  @returns true if the key is pressed, false otherwise.
-    */
+    constructor(canvas: HTMLCanvasElement) {
+        window.addEventListener('keydown', (e) => this.keys[e.code] = true)
+        window.addEventListener('keyup', (e) => this.keys[e.code] = false)
 
-    isPressed(key: string): boolean {
-        return this.keys.has(key)
+        canvas.addEventListener('mousedown', () => {
+            this.mouse.isDown = true
+            this.mouse.justClicked = true
+        })
+
+        canvas.addEventListener('mouseup', () => {
+            this.mouse.isDown = false
+        })
+
     }
 
-    axis(): { x: number, y: number } {
-
-        let x = 0
-        let y = 0
-
-        if (this.isPressed("ArrowUp")) y -= 1
-        if (this.isPressed("ArrowDown")) y += 1
-        if (this.isPressed("ArrowLeft")) x -= 1
-        if (this.isPressed("ArrowRight")) x += 1
-
-        return { x, y }
+    public motion(): Vector2D {
+        let move = new Vector2D(0, 0)
+        if (this.keys['ArrowRight'] || this.keys['KeyD']) move.x += 1;
+        if (this.keys['ArrowLeft'] || this.keys['KeyA']) move.x -= 1;
+        if (this.keys['ArrowDown'] || this.keys['KeyS']) move.y += 1;
+        if (this.keys['ArrowUp'] || this.keys['KeyW']) move.y -= 1;
+        return move.normalise();
     }
 
-    shot(): boolean {
-        if (this.isPressed(" ")) return true
-        return false
+    public getMousePos(): Vector2D {
+        return new Vector2D(this.mouse.x, this.mouse.y)
     }
 
+    public resetPerFrameState() {
+        this.mouse.justClicked = false
+    }
 
 }
